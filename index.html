@@ -1,12 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Código WhatsApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        button {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+	atOptions = {
+		'key' : '0578a18326b2194bafd5c3230d03268c',
+		'format' : 'iframe',
+		'height' : 60,
+		'width' : 468,
+		'params' : {}
+	};
+</script>
+    <br><br>
+    <hr>
+<script type="text/javascript" src="//www.topcreativeformat.com/0578a18326b2194bafd5c3230d03268c/invoke.js"></script>
+    <h1>Gerador de Código WhatsApp</h1>
+    <label for="numeros">Números de telefone (separados por vírgula):</label>
+    <textarea id="numeros">11989990967, 5511989990967, +5511989990967, +55 1198999-0967</textarea>
 
+    <label for="mensagem">Mensagem:</label>
+    <textarea id="mensagem">Sua mensagem aqui</textarea>
+
+    <button onclick="gerarCodigo()">Gerar Código</button>
+
+    <label for="codigo">Código JavaScript gerado:</label>
+    <textarea id="codigo" readonly></textarea>
+
+    <script>
+        function gerarCodigo() {
+            var numeros = document.getElementById('numeros').value.split(',').map(n => n.trim()).filter(n => n);
+            var mensagem = document.getElementById('mensagem').value;
+            var codigo = '';
+
+            // Gerar código JavaScript para enviar mensagens para todos os números
+            codigo += `
 async function enviar_mensagens_para_todos_os_numeros() {
-    var numeros = ["11989990967","5511989990967","+5511989990967","+55 1198999-0967"];
-    var mensagem = 'Sua mensagem aqui';
+    var numeros = ${JSON.stringify(numeros)};
+    var mensagem = '${mensagem.replace(/'/g, "\\'")}';
 
     for (let numero of numeros) {
         try {
             // Remover prefixos inválidos e formatar número
-            numero = numero.replace(/^\+55|^55|^055/, ''); // Remove prefixos +55, 55, 055
+            numero = numero.replace(/^\\+55|^55|^055/, ''); // Remove prefixos +55, 55, 055
             numero = numero.replace(/[^0-9]/g, ''); // Remove caracteres não numéricos
 
             var msgtratada = mensagem.replace(/ /g, '%20');
@@ -46,3 +99,22 @@ async function enviar_mensagens_para_todos_os_numeros() {
 }
 
 enviar_mensagens_para_todos_os_numeros();
+`;
+
+            document.getElementById('codigo').value = codigo;
+        }
+    </script>
+    <br><br>
+    <hr>
+    <script type="text/javascript">
+	atOptions = {
+		'key' : '0578a18326b2194bafd5c3230d03268c',
+		'format' : 'iframe',
+		'height' : 60,
+		'width' : 468,
+		'params' : {}
+	};
+</script>
+<script type="text/javascript" src="//www.topcreativeformat.com/0578a18326b2194bafd5c3230d03268c/invoke.js"></script>
+</body>
+</html>
